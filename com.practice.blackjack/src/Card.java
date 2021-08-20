@@ -13,11 +13,9 @@ public class Card {
         return this.suit;
     }
 
-    public String getValue() {
-        return this.value;
-    }
+    public String getValue() { return this.value; }
 
-    public int getScore() {
-        return this.score;
-    }
+    public int getScore() { return this.score; }
+
+    public void setScore(int score) { this.score = score; }
 }
