@@ -6,6 +6,9 @@ public class BlackJackMain {
         //Game Start
         System.out.println("Welcome to Blackjack");
 
+        //GUI block
+        //GameGUI gameGUI = new GameGUI();
+
         //Start Game
         Game newGame = new Game();
         newGame.startNewGame();
