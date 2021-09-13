@@ -94,7 +94,6 @@ public class Game {
             }
             else if(playerScore == 21) {
                 System.out.println("21!, Congrats you've won.");
-                busted = true;
                 break;
             }
 
@@ -105,7 +104,8 @@ public class Game {
                 playerHand.add(commandHit());
             }
             else if(playerDecision.equals("stay")) {
-//                dealerGameLoop();
+                dealerGameLoop();
+                break;
             }
         }
 
@@ -142,21 +142,17 @@ public class Game {
             for(int i = 0; i < dealerHand.size(); i++) {
                 if(dealerHand.get(i).getValue().equals("Ace") && dealerHand.get(i).getScore() == 11) {
                     indexAce.add(i);
-//                    System.out.println("Number of Aces with score of 11: " + indexAce.size());
                 }
 
                 dealerScore +=  dealerHand.get(i).getScore();
 
                 //If changing the score of an Ace can prevent a Bust
                 if(dealerScore > 21 && indexAce.size() > 0) {
-//                    System.out.println("Your unevaluated score is: " + score);
                     //Get the first unturned Ace
                     if(dealerHand.get(indexAce.get(0)).getScore() == 11) {
                         dealerHand.get(indexAce.get(0)).setScore(1);
-//                        System.out.println( "Ace at loc: " + 0 + ", now has score: " + playerHand.get(indexAce.get(0)).getScore() );
                         indexAce.remove(0);
                         dealerScore -= 10;
-//                        System.out.println("Adjusted score is now: " + score);
                     }
                     else {
                         continue;
@@ -165,18 +161,18 @@ public class Game {
                 System.out.print("|"+ dealerHand.get(i).getSuit() + " " + dealerHand.get(i).getValue() + "| ");
             }
 
-            System.out.println("\nYour score is: " + dealerScore);
+            System.out.println("\nDealer score is: " + dealerScore);
 
             //  Loss/Win conditions
             if(dealerScore > 21) {
                 System.out.println("Dealer is over 21, you have won.");
                 busted = true;
-                break;
+                return false;
             }
             else if(dealerScore == 21) {
                 System.out.println("Dealer has 21, you lose.");
                 busted = true;
-                break;
+                return true;
             }
 
             //Dealer should try to reach 21, or get above player score
@@ -193,7 +189,7 @@ public class Game {
             else if(dealerScore > playerScore) {
                 System.out.println(dealerScore + " vs " + playerScore);
                 System.out.println("Dealer has won.");
-                busted = true;
+                return true;
             }
         }
         return false;
