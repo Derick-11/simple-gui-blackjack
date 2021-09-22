@@ -7,7 +7,7 @@ public class BlackJackMain {
         System.out.println("Welcome to Blackjack");
 
         //GUI block
-        GameGUI gameGUI = new GameGUI();
+//        GameGUI gameGUI = new GameGUI();
 
         //Start Game
         Game newGame = new Game();
